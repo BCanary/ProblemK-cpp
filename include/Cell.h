@@ -2,6 +2,7 @@
 
 #include <string>
 
+class Table;
 
 class Cell {
     private:
@@ -10,6 +11,6 @@ class Cell {
         std::string _data; // A data stored in a cell
         Cell();
         void write(std::string data);
-        void calculate();
+        void calculate(Table *table);
         std::string read();
 };

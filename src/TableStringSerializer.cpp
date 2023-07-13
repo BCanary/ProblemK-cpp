@@ -17,7 +17,7 @@ std::string TableStringSerializer::write(Table *table)
     {
         for (unsigned int j = 0; j < size_x; j++)
         {
-            output += table->getCell(j, i)->read();
+            output += table->getCell(j, i, nullptr)->read();
             output += " ";
         }
         output += "\n";
@@ -42,7 +42,7 @@ void TableStringSerializer::read(Table *table, std::string &readable)
         position_x = 0;
         while (line_stream >> cell_data)
         {
-            Cell *cell = table->getCell(position_x, position_y);
+            Cell *cell = table->getCell(position_x, position_y, nullptr);
             cell->write(cell_data);
             position_x++;
         }

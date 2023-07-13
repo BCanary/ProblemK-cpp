@@ -24,8 +24,36 @@ Table::~Table()
 
 }
 
-Cell* Table::getCell(int position_x, int position_y)
+Cell* Table::getCell(int position_x, int position_y, std::vector<std::vector<int>> *chain)
 {
+    // Check if there is already that Cell in array
+    auto this_position = std::vector<int> {position_x, position_y};
+
+    if (chain != nullptr)
+    {
+        bool in_chain = false;
+        for (auto i: *chain)
+        {
+            if (i == this_position)
+            {
+                in_chain = true;
+                for (std::vector<int> j: *chain)
+                {
+                    Cell *cell = Table::getCell(j[0], j[1], nullptr);
+                    cell->write("#CYCLE");
+                    cell->calculate(this);
+                }
+            }
+        }
+        if (!in_chain)
+        {
+            chain->push_back(this_position);
+        }
+        else {
+            return nullptr;
+        }
+    }
+    
     return _table[position_y][position_x]; 
 }
 
@@ -39,9 +67,9 @@ void Table::calculate()
 {
     for (auto col: _table)
     {
-        for (Cell* row: col)
+        for (Cell* row: col) 
         {
-            row->calculate();
+            row->calculate(this);
         }
     }
 }

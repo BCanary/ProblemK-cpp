@@ -9,6 +9,7 @@ add_executable(ProblemK
     src/Cell.cpp 
     src/StringMath.cpp
     src/TableStringSerializer.cpp
+    src/PositionConverter.cpp
 
     tests/Tests.cpp
     )

@@ -9,7 +9,7 @@
 void Tests::testTable()
 {
     std::string size = "2 3";
-    std::string input = "1 'Two 3\n4 =2+2*2 6";
+    std::string input = "=B1 'Two 3\n=B2 =A1 6";
     std::cout << "INPUT" << std::endl << size << std::endl << input << std::endl;
 
     unsigned int size_x, size_y;
@@ -22,6 +22,8 @@ void Tests::testTable()
     
     tss.read(&table, input);
     table.calculate();
+    
+    std::cout << "READ";
     std::cout << "RESULT" << std::endl;
     std::string back_result = tss.write(&table);
     std::cout << back_result;

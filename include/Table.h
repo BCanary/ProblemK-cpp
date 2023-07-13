@@ -14,5 +14,5 @@ class Table {
         Table(unsigned int size_x, unsigned int size_y);   
         ~Table();
         void calculate();
-        Cell *getCell(int position_x, int position_y);
+        Cell *getCell(int position_x, int position_y, std::vector<std::vector<int>> *chain);
 };
